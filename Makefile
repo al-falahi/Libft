@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 NAME = libft.a
-SRC = ft_strlen.c ft_memset.c ft_bzero.c
+SRC =  main.c ft_strlen.c ft_memset.c ft_bzero.c
 OBJ = $(SRC:.c=.o)
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 LIBFT_DIR = ./libft
@@ -21,8 +21,11 @@ LIBFT_DIR = ./libft
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
-
+	$(CC) -o $(NAME) $(OBJ)
+# delete + main.c + $(CC) -o 
+%.o: %.c
+	$(CC) -c $< -o $@
+##
 clean:
 	@$(RM) $(OBJ)
 
