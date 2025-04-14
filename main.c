@@ -1,23 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aal-fala <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/14 21:01:01 by aal-fala          #+#    #+#             */
+/*   Updated: 2025/04/14 21:01:01 by aal-fala         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+int	main(void)
 {
-    // Testing ft_strlen
-    char str[] = "Hello, world!";
-    int len = ft_strlen(str);
-    printf("Length of '%s' is: %d\n", str, len);
+	char	str[20] = "Hello, world!";
+	int	len;
+	char	str_memset[20] = "Hello";
+	char	str_bzero[20] = "Hello";
+	char	src[] = "Hello, world!";
+	char	dst[20];
 
-    // Testing ft_memset
-    char str_memset[20] = "Hello";
-    ft_memset(str_memset, 'X', 3);  // Set first 3 chars to 'X'
-    printf("Result after ft_memset: %s\n", str_memset);
-
-    // Testing ft_bzero
-    char str_bzero[20] = "Hello";
-    ft_bzero(str_bzero, 3);  // Set first 3 chars to '\0'
-    printf("Result after ft_bzero: %s\n", str_bzero);  // Should print "lo" because first 3 characters are zeroed
-
-    return 0;
+	len = ft_strlen(str);
+	printf("Length of '%s' is: %d\n", str, len);
+	ft_memset(str_memset, 'X', 3);
+	printf("Result after ft_memset: %s\n", str_memset);
+	ft_bzero(str_bzero, 3);
+	printf("Result after ft_bzero: %s\n", str_bzero);
+	ft_memcpy(dst, src, 13);
+	printf("Destination after memcpy: %s\n", dst);
+	printf("ft_isalpha('A') = %d\n", ft_isalpha('A')); // Should return 1
+	printf("ft_isalpha('z') = %d\n", ft_isalpha('z')); // Should return 1
+	printf("ft_isalpha('3') = %d\n", ft_isalpha('3')); // Should return 0
+	printf("ft_isdigit('0') = %d\n", ft_isdigit('0')); // Should return 1
+	printf("ft_isdigit('9') = %d\n", ft_isdigit('9')); // Should return 1
+	printf("ft_isdigit('A') = %d\n", ft_isdigit('A')); // Should return 0
+	printf("ft_isalnum('A') = %d\n",ft_isalnum('A'));  // returns 1
+	printf("ft_isalnum('9') = %d\n",ft_isalnum('9')); // returns 1
+	printf("ft_isalnum('$') = %d\n",ft_isalnum('$')); // returns 0
+	printf("Is 'A' an ASCII character? %d\n", ft_isascii('A'));  // 1
+	printf("Is 128 an ASCII character? %d\n", ft_isascii(128));  // 0
+	printf("Is 'A' printable? %d\n", ft_isprint('A'));  // 1 (Yes, 'A' is printable)
+	printf("Is 10 printable? %d\n", ft_isprint(10));   // 0 (No, 10 is newline and not printable)
+	printf("Is ' ' (space) printable? %d\n", ft_isprint(' '));  // 1 (Yes, space is printable)
+	printf("Is '~' printable? %d\n", ft_isprint('~'));  // 1 (Yes, tilde is printable)
+	return (0);
 }
-
