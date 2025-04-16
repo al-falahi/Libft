@@ -64,5 +64,38 @@ int	main(void)
 	if (result)
          printf("Found 'o' at: %s\n", resultr);
 	else
-          printf("'o' not found.\n");
+         printf("'o' not found.\n");
+	//ft_strncmp
+	printf("%d\n", ft_strncmp("abc", "abc", 3));    // 0
+	printf("%d\n", ft_strncmp("abc", "abd", 3));    // -1 or -100 depending on encoding
+	printf("%d\n", ft_strncmp("abc", "abcde", 5));  // negative
+	//ft_strmemchr
+	char	data[] = "abcdefg";
+	char	*res = ft_memchr(data, 'd', 7);
+
+	if (res)
+		printf("Found: %s\n", res);
+	else
+		printf("Not found\n");
+	//ft_memcmp
+	char	a[] = "abcde";
+	char	b[] = "abCde";
+	int		resm = ft_memcmp(a, b, 5);
+	if (resm == 0)
+		printf("Blocks are equle\n");
+	else
+		printf("Blocks differ: %d\n", resm);
+	//ft_strnstr
+	const char	*big = "Hello, this is a test string.";
+	const char	*small = "test";
+	char		*found = ft_strnstr(big, small, 20);
+	if (found)
+		printf("Found: %s\n", found);
+	else
+		printf("Not found within limit.\n");
+	//ft_atoi
+	printf("%d\n", ft_atoi("   -42"));
+	printf("%d\n", ft_atoi("4193 with words"));
+	printf("%d\n", ft_atoi("+123"));
+	printf("%d\n", ft_atoi("abc"));
 }
