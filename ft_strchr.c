@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-fala <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 21:14:05 by aal-fala          #+#    #+#             */
-/*   Updated: 2025/04/15 21:14:08 by aal-fala         ###   ########.fr       */
+/*   Created: 2025/04/16 13:12:25 by aal-fala          #+#    #+#             */
+/*   Updated: 2025/04/16 13:12:25 by aal-fala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	d = (unsigned char *)dst;
-	s = (const unsigned char *)src;
-	if (!dst && !src)
+	while (*s)
 	{
-		return (NULL);
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	else
-	{
-		while (len-- > 0)
-		{
-			*d++ = *s++;
-		}
-	}
-	return (dst);
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }

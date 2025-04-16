@@ -50,4 +50,19 @@ int	main(void)
 	// ft_tolower
 	ch = 'B';
 	printf("Orginal char: %c, Lowercase: %c\n", ch, ft_tolower(ch));
+	// ft_strchr
+	const	char	*strchr = "Hello, world";
+	char			*result = ft_strchr(strchr, 'o');
+
+	if (result)
+		printf("Found 'o' at: %s\n", result);
+	else
+		printf("'o' not found.\n");
+	// ft_strrchr
+	const   char    *strrchr = "Hello, world";
+	char            *resultr = ft_strrchr(strrchr, 'o');
+	if (result)
+         printf("Found 'o' at: %s\n", resultr);
+	else
+          printf("'o' not found.\n");
 }
