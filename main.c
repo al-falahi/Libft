@@ -44,5 +44,10 @@ int	main(void)
 	printf("Is 10 printable? %d\n", ft_isprint(10));   // 0 (No, 10 is newline and not printable)
 	printf("Is ' ' (space) printable? %d\n", ft_isprint(' '));  // 1 (Yes, space is printable)
 	printf("Is '~' printable? %d\n", ft_isprint('~'));  // 1 (Yes, tilde is printable)
-	return (0);
+	// ft_toupper
+	char ch = 'b';
+	printf("Orginal char: %c, Uppercase: %c\n", ch, ft_toupper(ch));
+	// ft_tolower
+	ch = 'B';
+	printf("Orginal char: %c, Lowercase: %c\n", ch, ft_tolower(ch));
 }

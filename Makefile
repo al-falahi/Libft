@@ -6,10 +6,10 @@
 #    By: aal-fala <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/13 13:49:39 by aal-fala          #+#    #+#              #
-#    Updated: 2025/04/13 13:49:39 by aal-fala         ###   ########.fr        #
+#    Updated: 2025/04/15 21:47:36 by aal-fala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-#
+
 #NAME = libft.a
 #SRC =  main.c ft_strlen.c ft_memset.c ft_bzero.c
 #OBJ = $(SRC:.c=.o)
@@ -37,7 +37,7 @@
 #.PHONY: all clean fclean re
 
 NAME = libft.a
-SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c
+SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c
 OBJ = $(SRC:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
