@@ -98,4 +98,14 @@ int	main(void)
 	printf("%d\n", ft_atoi("4193 with words"));
 	printf("%d\n", ft_atoi("+123"));
 	printf("%d\n", ft_atoi("abc"));
+	//part 2
+	//ft_substr
+	printf("ft_substr: %s\n", ft_substr("abcdef", 2, 3));
+	//ft_strjoin
+	char	*s1 = "Hello";
+	char	*s2 = "World";
+	char	*joined;
+	joined = ft_strjoin(s1, s2);
+	printf("Result: '%s'\n", joined);
+	free(joined);
 }
