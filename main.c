@@ -6,7 +6,7 @@
 /*   By: aal-fala <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:01:01 by aal-fala          #+#    #+#             */
-/*   Updated: 2025/04/14 21:01:01 by aal-fala         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:11:05 by aal-fala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,26 @@ int	main(void)
 	joined = ft_strjoin(s1, s2);
 	printf("Result: '%s'\n", joined);
 	free(joined);
-}
+	//ft_strtrim
+	char *trimmed;
+	trimmed = ft_strtrim("  \t\n42 Antwerp\t\n  ", " \n\t");
+	printf("Trimmed: '%s'\n", trimmed);
+	free(trimmed);
+	//ft_split
+	char **resultt;
+	int i = 0;
+    resultt = ft_split("Hello 42 Network", ' ');
+
+    if (!resultt)
+    {
+        printf("ft_split failed!\n");
+        return (1);
+    }
+
+    while (resultt[i])
+    {
+        printf("Word %d: '%s'\n", i, resultt[i]);
+        free(resultt[i]);
+        i++;
+    }
+    free(resultt);}
