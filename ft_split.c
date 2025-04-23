@@ -12,94 +12,72 @@
 
 #include "libft.h"
 
-static size_t	ft_word_count(const char *s, char c)
+static int	ft_count_words(const char *s, char c)
 {
-	size_t	count;
-	int		in_word;
-
-	count = 0;
-	in_word = 0;
-	while (*s)
-	{
-		if (*s != c && !in_word)
-		{
-			in_word = 1;
-			count++;
-		}
-		else if (*s == c)
-			in_word = 0;
-		s++;
-	}
-	return (count);
-}
-
-static char	*ft_word_dup(const char *s, size_t start, size_t end)
-{
-	char	*word;
-	size_t	len;
-
-	len = end - start;
-	word = malloc(len + 1);
-	if (!word)
-		return (NULL);
-	ft_memcpy(word, s + start, len);
-	word[len] = '\0';
-	return (word);
-}
-
-static void	ft_free_all(char **arr, size_t size)
-{
-	while (size--)
-		free(arr[size]);
-	free(arr);
-}
-
-static int	ft_fill_words(char **res, const char *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	ssize_t	start;
-	size_t	end;
+	int	i;
+	int	words;
 
 	i = 0;
-	j = 0;
-	start = -1;
+	words = 0;
 	while (s[i])
 	{
-		if (s[i] != c && start < 0)
-			start = (ssize_t)i;
-		if ((s[i] == c || s[i + 1] == '\0') && start >= 0)
+		if (s[i] != c)
 		{
-			if (s[i] == c)
-				end = i;
-			else
-				end = i + 1;
-			res[j] = ft_word_dup(s, (size_t)start, end);
-			if (!res[j++])
-				return (-1);
-			start = -1;
+			words++;
+			while (s[i] && s[i] != c)
+				i++;
 		}
+		else
+			i++;
+	}
+	return (words);
+}
+
+static char	*word_splitter(const char *s, char c)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	word = malloc(sizeof(char) * (i + 1));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (s[i] && s[i] != c)
+	{
+		word[i] = s[i];
 		i++;
 	}
-	res[j] = NULL;
-	return (0);
+	word[i] = '\0';
+	return (word);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
-	size_t	words;
+	char	**words;
+	int		i;
+	int		j;
 
 	if (!s)
 		return (NULL);
-	words = ft_word_count(s, c);
-	res = malloc(sizeof(char *) * (words + 1));
-	if (!res)
+	words = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (!words)
 		return (NULL);
-	if (ft_fill_words(res, s, c) == -1)
+	i = 0;
+	j = 0;
+	while (s[i])
 	{
-		ft_free_all(res, words);
-		return (NULL);
+		if (s[i] != c)
+		{
+			words[j++] = word_splitter(&s[i], c);
+			while (s[i] && s[i] != c)
+				i++;
+		}
+		else
+			i++;
 	}
-	return (res);
+	words[j] = NULL;
+	return (words);
 }
