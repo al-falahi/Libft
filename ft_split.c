@@ -54,24 +54,34 @@ static char	*word_splitter(const char *s, char c)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+static void	free_words(char **words)
 {
-	char	**words;
-	int		i;
-	int		j;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	words = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
-	if (!words)
-		return (NULL);
+	i = 0;
+	while (words[i])
+	{
+		free(words[i]);
+		i++;
+	}
+	free(words);
+}
+
+static int	fill_words(char **words, const char *s, char c)
+{
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 0;
 	while (s[i])
 	{
 		if (s[i] != c)
 		{
-			words[j++] = word_splitter(&s[i], c);
+			words[j] = word_splitter(&s[i], c);
+			if (!words[j])
+				return (0);
+			j++;
 			while (s[i] && s[i] != c)
 				i++;
 		}
@@ -79,5 +89,22 @@ char	**ft_split(char const *s, char c)
 			i++;
 	}
 	words[j] = NULL;
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**words;
+
+	if (!s)
+		return (NULL);
+	words = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (!words)
+		return (NULL);
+	if (!fill_words(words, s, c))
+	{
+		free_words(words);
+		return (NULL);
+	}
 	return (words);
 }

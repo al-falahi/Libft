@@ -12,28 +12,40 @@
 
 #include "libft.h"
 
-static int	ft_numlen(int n)
+static int	ft_decimal_places(long n)
 {
-	int	len;
+	int	i;
 
-	len = (n <= 0);
-	while (n)
+	i = 0;
+	if (n <= 0)
+	{
+		n *= -1;
+		i++;
+	}
+	while (n > 0)
 	{
 		n /= 10;
-		len++;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 
-static char	*ft_fillstr(char *str, long num, int len)
+static char	*mount_str(char *str, long l, int i)
 {
-	str[len] = '\0';
-	if (num == 0)
-		str[0] = '0';
-	while (num > 0)
+	if (l == 0)
 	{
-		str[--len] = '0' + (num % 10);
-		num /= 10;
+		str[0] = '0';
+		return (str);
+	}
+	if (l < 0)
+	{
+		str[0] = '-';
+		l *= -1;
+	}
+	while (l > 0)
+	{
+		str[i--] = (l % 10) + '0';
+		l /= 10;
 	}
 	return (str);
 }
@@ -41,18 +53,14 @@ static char	*ft_fillstr(char *str, long num, int len)
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		len;
-	long	num;
+	int		i;
+	long	l;
 
-	num = (long)n;
-	len = ft_numlen(n);
-	str = malloc(len + 1);
+	l = n;
+	i = ft_decimal_places(l);
+	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
-	if (num < 0)
-	{
-		str[0] = '-';
-		num = -num;
-	}
-	return (ft_fillstr(str, num, len));
+	str[i--] = '\0';
+	return (mount_str(str, l, i));
 }

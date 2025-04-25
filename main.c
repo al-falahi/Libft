@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
 int	main(void)
 {
 	char	str[20] = "Hello, world!";
@@ -130,4 +130,4 @@ int	main(void)
         free(resultt[i]);
         i++;
     }
-    free(resultt);}
+    free(resultt);}*/
